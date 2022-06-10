@@ -1,0 +1,19 @@
+﻿@page "{id:int}"
+@model StoreApp.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row justify-content-center">
+    <div class="card mb-3 w-50">
+        <div class="card-header bg-transparent text-center">GoodID: @Model.Item.Id</div>
+        <div class="card-body">
+            <h5 class="card-title text-center">@Model.Item.Title</h5>
+            <p class="card-text text-center">@Model.Item.Description</p>
+        </div>
+        <div class="card-footer bg-transparent text-center">@Model.Item.Price$</div>
+        <a href="~/Goods" class="btn btn-primary">Back</a>
+    </div>
+</div>
+

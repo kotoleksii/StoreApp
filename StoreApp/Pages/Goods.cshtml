@@ -1,0 +1,52 @@
+﻿@page "{handler?}"
+@model StoreApp.Pages.GoodsModel
+@{
+    ViewData["Title"] = "Goods";
+}
+@using Models
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="float-right">
+    <div class="row mb-2">
+        <form method="POST">
+            <input type="submit" class="mr-2" asp-page-handler="FromCheapToExpansive" value="Від дешевих до дорогих" />
+            <input type="submit" class="mr-2" asp-page-handler="FromExpansiveToCheap" value="Від дорогих до дешевих" />
+            <input type="submit" class="mr-2" asp-page-handler="Reset" value="Скинути" />
+        </form>
+    </div>
+    <div class="row mb-2">
+        <form method="POST">
+            <label>Ціна</label>
+            <input type="text" class="mr-2" name="from" value="@Model.FromValueText" />
+            -
+            <input type="text" class="mr-2" name="to" value="@Model.ToValueText" />
+            <input type="submit" class="mr-2" asp-page-handler="Filter" value="OK" />
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Item item in Model.DisplayedGoods)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Кількість товарів: @Model.GoodsQuantity()</p>

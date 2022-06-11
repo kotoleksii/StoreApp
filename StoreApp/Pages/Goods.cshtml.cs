@@ -23,8 +23,11 @@ namespace StoreApp.Pages
         {
             _context = db;
 
-            FromValueText = _context.Items.Min(p => p.Price).ToString();
-            ToValueText = _context.Items.Max(p => p.Price).ToString();
+            if (_context.Items.FirstOrDefault() != null)
+            {
+                FromValueText = _context.Items.Min(p => p.Price).ToString();
+                ToValueText = _context.Items.Max(p => p.Price).ToString();
+            }
         }
 
         public void OnGet()
